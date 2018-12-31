@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  CalendarKit
+//
+//  Created by hirano masaki on 2019/01/04.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+MACOSX_DEPLOYMENT_TARGET = 10.12
+IPHONEOS_DEPLOYMENT_TARGET = 10.0
