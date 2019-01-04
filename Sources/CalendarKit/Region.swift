@@ -29,7 +29,11 @@ public struct Region {
         )
     }()
     
-    static public var `default` = Region.utc
+    static public var `default`: Region = {
+        var region = Region.utc
+        region.calendar.timeZone = .autoupdatingCurrent
+        return region
+    }()
 }
 
 private extension Region {
