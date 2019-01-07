@@ -38,9 +38,18 @@ public struct Region {
 
 private extension Region {
     
+    var secondsFromGMT: TimeInterval {
+        return TimeInterval(calendar.timeZone.secondsFromGMT())
+    }
+    
     func startDateComponents(_ component: Calendar.Component, for date: Date) -> DateComponents {
-        let truncated = calendar.dateInterval(of: component, for: date)!.start + TimeInterval(calendar.timeZone.secondsFromGMT())
+        let truncated = calendar.dateInterval(of: component, for: date)!.start + secondsFromGMT
         return calendar.dateComponents([component], from: .referenceDate, to: truncated)
+    }
+    
+    func startDate<T: ReferenceDateStrideable>(of component: Calendar.Component, for value: T) -> Date {
+        let date = calendar.date(byAdding: component, value: value.intervalSinceReferenceDate, to: .referenceDate)!
+        return date - secondsFromGMT
     }
 }
 
@@ -49,15 +58,15 @@ private extension Region {
 public extension Region {
     
     func startDate(of day: Day) -> Date {
-        return calendar.date(byAdding: .day, value: day.intervalSinceReferenceDate, to: .referenceDate)!
+        return startDate(of: .day, for: day)
     }
     
     func startDate(of month: Month) -> Date {
-        return calendar.date(byAdding: .month, value: month.intervalSinceReferenceDate, to: .referenceDate)!
+        return startDate(of: .month, for: month)
     }
     
     func startDate(of year: Year) -> Date {
-        return calendar.date(byAdding: .year, value: year.intervalSinceReferenceDate, to: .referenceDate)!
+        return startDate(of: .year, for: year)
     }
 }
 
