@@ -81,7 +81,6 @@
 		OBJ_31 /* RegionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionTests.swift; sourceTree = "<group>"; };
 		OBJ_32 /* WeekdayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayTests.swift; sourceTree = "<group>"; };
 		OBJ_33 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		OBJ_34 /* Configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Configs; sourceTree = SOURCE_ROOT; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_8 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = Configs/Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,11 +107,11 @@
 		OBJ_10 /* CalendarKit */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_17 /* Protocol */,
+				OBJ_13 /* Extension */,
 				OBJ_11 /* DateProvider.swift */,
 				OBJ_12 /* Day.swift */,
-				OBJ_13 /* Extension */,
 				OBJ_16 /* Month.swift */,
-				OBJ_17 /* Protocol */,
 				OBJ_19 /* Region.swift */,
 				OBJ_20 /* Weekday.swift */,
 				OBJ_21 /* Year.swift */,
@@ -149,8 +148,8 @@
 		OBJ_23 /* CalendarKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_24 /* DayTests.swift */,
 				OBJ_25 /* Extension */,
+				OBJ_24 /* DayTests.swift */,
 				OBJ_29 /* IntTests.swift */,
 				OBJ_30 /* RegionDateTests.swift */,
 				OBJ_31 /* RegionTests.swift */,
@@ -187,7 +186,6 @@
 				OBJ_7 /* Configs */,
 				OBJ_9 /* Sources */,
 				OBJ_22 /* Tests */,
-				OBJ_34 /* Configs */,
 				OBJ_35 /* Products */,
 			);
 			sourceTree = "<group>";
