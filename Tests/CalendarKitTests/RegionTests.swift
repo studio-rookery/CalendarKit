@@ -144,131 +144,164 @@ final class RegionTests: XCTestCase {
 extension RegionTests {
     
     func testStartDateOfDay() {
-        XCTAssertEqual(Region.utc.startDate(of: Day("2001/01/01")), Date("2001/01/01 00:00"))
-        XCTAssertEqual(Region.tokyo.startDate(of: Day("2001/01/01")), Date("2000/12/31 15:00"))
-        XCTAssertEqual(Region.honolulu.startDate(of: Day("2001/01/01")), Date("2001/01/01 10:00"))
+        
+        let testCases: [TestCase<Day>] = [
+            .startDate(of: Day("2001/01/01"), is: Date("2001/01/01 00:00"), in: .utc),
+            .startDate(of: Day("2001/01/01"), is: Date("2000/12/31 15:00"), in: .tokyo),
+            .startDate(of: Day("2001/01/01"), is: Date("2001/01/01 10:00"), in: .honolulu)
+        ]
+        
+        run(testCases) { region, date, day in
+            .assertEqual(region.startDate(of: day), date)
+        }
     }
     
     func testStartDateOfMonth() {
-        XCTAssertEqual(Region.utc.startDate(of: Month("2001/01")), Date("2001/01/01 00:00"))
-        XCTAssertEqual(Region.tokyo.startDate(of: Month("2001/01")), Date("2000/12/31 15:00"))
-        XCTAssertEqual(Region.honolulu.startDate(of: Month("2001/01")), Date("2001/01/01 10:00"))
+        
+        let testCases: [TestCase<Month>] = [
+            .startDate(of: Month("2001/01"), is: Date("2001/01/01 00:00"), in: .utc),
+            .startDate(of: Month("2001/01"), is: Date("2000/12/31 15:00"), in: .tokyo),
+            .startDate(of: Month("2001/01"), is: Date("2001/01/01 10:00"), in: .honolulu)
+        ]
+        
+        run(testCases) { region, date, month in
+            .assertEqual(region.startDate(of: month), date)
+        }
     }
     
     func testStartDateOfYear() {
-        XCTAssertEqual(Region.utc.startDate(of: Year("2001")), Date("2001/01/01 00:00"))
-        XCTAssertEqual(Region.tokyo.startDate(of: Year("2001")), Date("2000/12/31 15:00"))
-        XCTAssertEqual(Region.honolulu.startDate(of: Year("2001")), Date("2001/01/01 10:00"))
+        
+        let testCases: [TestCase<Year>] = [
+            .startDate(of: Year("2001"), is: Date("2001/01/01 00:00"), in: .utc),
+            .startDate(of: Year("2001"), is: Date("2000/12/31 15:00"), in: .tokyo),
+            .startDate(of: Year("2001"), is: Date("2001/01/01 10:00"), in: .honolulu)
+        ]
+        
+        run(testCases) { region, date, year in
+            .assertEqual(region.startDate(of: year), date)
+        }
     }
     
     func testDayForDate() {
         let testCases: [TestCase<Day>] = [
-            .init(Date("2001/01/01 00:00"), is: Day("2001/01/01"), in: .utc),
-            .init(Date("2001/01/01 00:00"), is: Day("2001/01/01"), in: .tokyo),
-            .init(Date("2001/01/01 00:00"), is: Day("2000/12/31"), in: .honolulu),
+            .date(Date("2001/01/01 00:00"), is: Day("2001/01/01"), in: .utc),
+            .date(Date("2001/01/01 00:00"), is: Day("2001/01/01"), in: .tokyo),
+            .date(Date("2001/01/01 00:00"), is: Day("2000/12/31"), in: .honolulu),
             
-            .init(Date("2000/12/31 14:59"), is: Day("2000/12/31"), in: .utc),
-            .init(Date("2000/12/31 14:59"), is: Day("2000/12/31"), in: .tokyo),
-            .init(Date("2000/12/31 14:59"), is: Day("2000/12/31"), in: .honolulu),
+            .date(Date("2000/12/31 14:59"), is: Day("2000/12/31"), in: .utc),
+            .date(Date("2000/12/31 14:59"), is: Day("2000/12/31"), in: .tokyo),
+            .date(Date("2000/12/31 14:59"), is: Day("2000/12/31"), in: .honolulu),
             
-            .init(Date("2000/12/31 15:00"), is: Day("2000/12/31"), in: .utc),
-            .init(Date("2000/12/31 15:00"), is: Day("2001/01/01"), in: .tokyo),
-            .init(Date("2000/12/31 15:00"), is: Day("2000/12/31"), in: .honolulu),
+            .date(Date("2000/12/31 15:00"), is: Day("2000/12/31"), in: .utc),
+            .date(Date("2000/12/31 15:00"), is: Day("2001/01/01"), in: .tokyo),
+            .date(Date("2000/12/31 15:00"), is: Day("2000/12/31"), in: .honolulu),
             
-            .init(Date("2000/12/31 10:00"), is: Day("2000/12/31"), in: .utc),
-            .init(Date("2000/12/31 10:00"), is: Day("2000/12/31"), in: .tokyo),
-            .init(Date("2000/12/31 10:00"), is: Day("2000/12/31"), in: .honolulu),
+            .date(Date("2000/12/31 10:00"), is: Day("2000/12/31"), in: .utc),
+            .date(Date("2000/12/31 10:00"), is: Day("2000/12/31"), in: .tokyo),
+            .date(Date("2000/12/31 10:00"), is: Day("2000/12/31"), in: .honolulu),
             
-            .init(Date("2000/12/31 09:59"), is: Day("2000/12/31"), in: .utc),
-            .init(Date("2000/12/31 09:59"), is: Day("2000/12/31"), in: .tokyo),
-            .init(Date("2000/12/31 09:59"), is: Day("2000/12/30"), in: .honolulu)
+            .date(Date("2000/12/31 09:59"), is: Day("2000/12/31"), in: .utc),
+            .date(Date("2000/12/31 09:59"), is: Day("2000/12/31"), in: .tokyo),
+            .date(Date("2000/12/31 09:59"), is: Day("2000/12/30"), in: .honolulu)
         ]
         
-        run(testCases) { region, date in
-            region.day(for: date)
+        run(testCases) { region, date, day in
+            .assertEqual(region.day(for: date), day)
         }
     }
     
     func testMonthForDate() {
         let testCases: [TestCase<Month>] = [
-            .init(Date("2001/01/01 00:00"), is: Month("2001/01"), in: .utc),
-            .init(Date("2001/01/01 00:00"), is: Month("2001/01"), in: .tokyo),
-            .init(Date("2001/01/01 00:00"), is: Month("2000/12"), in: .honolulu),
+            .date(Date("2001/01/01 00:00"), is: Month("2001/01"), in: .utc),
+            .date(Date("2001/01/01 00:00"), is: Month("2001/01"), in: .tokyo),
+            .date(Date("2001/01/01 00:00"), is: Month("2000/12"), in: .honolulu),
             
-            .init(Date("2000/12/31 14:59"), is: Month("2000/12"), in: .utc),
-            .init(Date("2000/12/31 14:59"), is: Month("2000/12"), in: .tokyo),
-            .init(Date("2000/12/31 14:59"), is: Month("2000/12"), in: .honolulu),
+            .date(Date("2000/12/31 14:59"), is: Month("2000/12"), in: .utc),
+            .date(Date("2000/12/31 14:59"), is: Month("2000/12"), in: .tokyo),
+            .date(Date("2000/12/31 14:59"), is: Month("2000/12"), in: .honolulu),
             
-            .init(Date("2000/12/31 15:00"), is: Month("2000/12"), in: .utc),
-            .init(Date("2000/12/31 15:00"), is: Month("2001/01"), in: .tokyo),
-            .init(Date("2000/12/31 15:00"), is: Month("2000/12"), in: .honolulu),
+            .date(Date("2000/12/31 15:00"), is: Month("2000/12"), in: .utc),
+            .date(Date("2000/12/31 15:00"), is: Month("2001/01"), in: .tokyo),
+            .date(Date("2000/12/31 15:00"), is: Month("2000/12"), in: .honolulu),
             
-            .init(Date("2000/12/31 10:00"), is: Month("2000/12"), in: .utc),
-            .init(Date("2000/12/31 10:00"), is: Month("2000/12"), in: .tokyo),
-            .init(Date("2000/12/31 10:00"), is: Month("2000/12"), in: .honolulu),
+            .date(Date("2000/12/31 10:00"), is: Month("2000/12"), in: .utc),
+            .date(Date("2000/12/31 10:00"), is: Month("2000/12"), in: .tokyo),
+            .date(Date("2000/12/31 10:00"), is: Month("2000/12"), in: .honolulu),
             
-            .init(Date("2000/12/31 09:59"), is: Month("2000/12"), in: .utc),
-            .init(Date("2000/12/31 09:59"), is: Month("2000/12"), in: .tokyo),
-            .init(Date("2000/12/31 09:59"), is: Month("2000/12"), in: .honolulu)
+            .date(Date("2000/12/31 09:59"), is: Month("2000/12"), in: .utc),
+            .date(Date("2000/12/31 09:59"), is: Month("2000/12"), in: .tokyo),
+            .date(Date("2000/12/31 09:59"), is: Month("2000/12"), in: .honolulu)
         ]
         
-        run(testCases) { region, date in
-            region.month(for: date)
+        run(testCases) { region, date, month in
+            .assertEqual(region.month(for: date), month)
         }
     }
     
     func testYearForDate() {
         let testCases: [TestCase<Year>] = [
-            .init(Date("2001/01/01 00:00"), is: Year("2001"), in: .utc),
-            .init(Date("2001/01/01 00:00"), is: Year("2001"), in: .tokyo),
-            .init(Date("2001/01/01 00:00"), is: Year("2000"), in: .honolulu),
+            .date(Date("2001/01/01 00:00"), is: Year("2001"), in: .utc),
+            .date(Date("2001/01/01 00:00"), is: Year("2001"), in: .tokyo),
+            .date(Date("2001/01/01 00:00"), is: Year("2000"), in: .honolulu),
             
-            .init(Date("2000/12/31 14:59"), is: Year("2000"), in: .utc),
-            .init(Date("2000/12/31 14:59"), is: Year("2000"), in: .tokyo),
-            .init(Date("2000/12/31 14:59"), is: Year("2000"), in: .honolulu),
+            .date(Date("2000/12/31 14:59"), is: Year("2000"), in: .utc),
+            .date(Date("2000/12/31 14:59"), is: Year("2000"), in: .tokyo),
+            .date(Date("2000/12/31 14:59"), is: Year("2000"), in: .honolulu),
             
-            .init(Date("2000/12/31 15:00"), is: Year("2000"), in: .utc),
-            .init(Date("2000/12/31 15:00"), is: Year("2001"), in: .tokyo),
-            .init(Date("2000/12/31 15:00"), is: Year("2000"), in: .honolulu),
+            .date(Date("2000/12/31 15:00"), is: Year("2000"), in: .utc),
+            .date(Date("2000/12/31 15:00"), is: Year("2001"), in: .tokyo),
+            .date(Date("2000/12/31 15:00"), is: Year("2000"), in: .honolulu),
             
-            .init(Date("2000/12/31 10:00"), is: Year("2000"), in: .utc),
-            .init(Date("2000/12/31 10:00"), is: Year("2000"), in: .tokyo),
-            .init(Date("2000/12/31 10:00"), is: Year("2000"), in: .honolulu),
+            .date(Date("2000/12/31 10:00"), is: Year("2000"), in: .utc),
+            .date(Date("2000/12/31 10:00"), is: Year("2000"), in: .tokyo),
+            .date(Date("2000/12/31 10:00"), is: Year("2000"), in: .honolulu),
             
-            .init(Date("2000/12/31 09:59"), is: Year("2000"), in: .utc),
-            .init(Date("2000/12/31 09:59"), is: Year("2000"), in: .tokyo),
-            .init(Date("2000/12/31 09:59"), is: Year("2000"), in: .honolulu)
+            .date(Date("2000/12/31 09:59"), is: Year("2000"), in: .utc),
+            .date(Date("2000/12/31 09:59"), is: Year("2000"), in: .tokyo),
+            .date(Date("2000/12/31 09:59"), is: Year("2000"), in: .honolulu)
         ]
         
-        run(testCases) { region, date in
-            region.year(for: date)
+        run(testCases) { region, date, year in
+            .assertEqual(region.year(for: date), year)
         }
     }
     
     // MARK: - Helper
     
-    struct TestCase<Expected: Equatable> {
+    struct TestCase<Value: Equatable> {
         
         let date: Date
-        let expected: Expected
+        let value: Value
         let region: Region
         
         let file: StaticString
         let line: UInt
         
-        init(_ date: Date, is expected: Expected, in region: Region, file: StaticString = #file, line: UInt = #line) {
-            self.date = date
-            self.expected = expected
-            self.region = region
-            self.file = file
-            self.line = line
+        static func date(_ date: Date, is value: Value, in region: Region, file: StaticString = #file, line: UInt = #line) -> TestCase<Value> {
+            return TestCase(date: date, value: value, region: region, file: file, line: line)
+        }
+        
+        static func startDate(of value: Value, is date: Date, in region: Region, file: StaticString = #file, line: UInt = #line) -> TestCase<Value> {
+            return TestCase(date: date, value: value, region: region, file: file, line: line)
         }
     }
     
-    func run<T>(_ testCases: [TestCase<T>], _ makeResult: (Region, Date) -> T) {
+    struct Assert<Value: Equatable> {
+        
+        let result: Value
+        
+        let expected: Value
+        
+        static func assertEqual(_ result: Value, _ expected: Value) -> Assert<Value> {
+            return Assert(result: result, expected: expected)
+        }
+    }
+    
+    func run<T, E>(_ testCases: [TestCase<T>], _ makeAssert: (Region, Date, T) -> Assert<E>) {
         testCases.forEach { testCase in
-            let result = makeResult(testCase.region, testCase.date)
-            let expected = testCase.expected
+            let expectation = makeAssert(testCase.region, testCase.date, testCase.value)
+            let result = expectation.result
+            let expected = expectation.expected
             XCTAssertEqual(result, expected, file: testCase.file, line: testCase.line)
         }
     }
