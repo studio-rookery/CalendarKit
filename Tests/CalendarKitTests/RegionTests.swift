@@ -34,15 +34,21 @@ final class RegionTests: XCTestCase {
     // MARK: - Date
     
     func testStartDateOfDay() {
-        XCTAssertEqual(region.startDate(of: day_2001_01_01_mon), startDate_2001_01_01)
+        XCTAssertEqual(Region.utc.startDate(of: Day("2001/01/01")), Date("2001/01/01 00:00"))
+        XCTAssertEqual(Region.tokyo.startDate(of: Day("2001/01/01")), Date("2000/12/31 15:00"))
+        XCTAssertEqual(Region.honolulu.startDate(of: Day("2001/01/01")), Date("2001/01/01 10:00"))
     }
     
     func testStartDateOfMonth() {
-        XCTAssertEqual(region.startDate(of: month_2001_01), startDate_2001_01_01)
+        XCTAssertEqual(Region.utc.startDate(of: Month("2001/01")), Date("2001/01/01 00:00"))
+        XCTAssertEqual(Region.tokyo.startDate(of: Month("2001/01")), Date("2000/12/31 15:00"))
+        XCTAssertEqual(Region.honolulu.startDate(of: Month("2001/01")), Date("2001/01/01 10:00"))
     }
     
     func testStartDateOfYear() {
-        XCTAssertEqual(region.startDate(of: year_2001), startDate_2001_01_01)
+        XCTAssertEqual(Region.utc.startDate(of: Year("2001")), Date("2001/01/01 00:00"))
+        XCTAssertEqual(Region.tokyo.startDate(of: Year("2001")), Date("2000/12/31 15:00"))
+        XCTAssertEqual(Region.honolulu.startDate(of: Year("2001")), Date("2001/01/01 10:00"))
     }
     
     // MARK: - Day
