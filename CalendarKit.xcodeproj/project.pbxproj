@@ -36,7 +36,6 @@
 		OBJ_71 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Int+Extension.swift */; };
 		OBJ_72 /* Region+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Region+Extension.swift */; };
 		OBJ_73 /* IntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* IntTests.swift */; };
-		OBJ_74 /* RegionDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* RegionDateTests.swift */; };
 		OBJ_75 /* RegionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* RegionTests.swift */; };
 		OBJ_76 /* WeekdayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* WeekdayTests.swift */; };
 		OBJ_77 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* XCTestManifests.swift */; };
@@ -77,7 +76,6 @@
 		OBJ_27 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		OBJ_28 /* Region+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Region+Extension.swift"; sourceTree = "<group>"; };
 		OBJ_29 /* IntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntTests.swift; sourceTree = "<group>"; };
-		OBJ_30 /* RegionDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionDateTests.swift; sourceTree = "<group>"; };
 		OBJ_31 /* RegionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionTests.swift; sourceTree = "<group>"; };
 		OBJ_32 /* WeekdayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayTests.swift; sourceTree = "<group>"; };
 		OBJ_33 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				OBJ_25 /* Extension */,
 				OBJ_24 /* DayTests.swift */,
 				OBJ_29 /* IntTests.swift */,
-				OBJ_30 /* RegionDateTests.swift */,
 				OBJ_31 /* RegionTests.swift */,
 				OBJ_32 /* WeekdayTests.swift */,
 				OBJ_33 /* XCTestManifests.swift */,
@@ -318,7 +315,6 @@
 				OBJ_71 /* Int+Extension.swift in Sources */,
 				OBJ_72 /* Region+Extension.swift in Sources */,
 				OBJ_73 /* IntTests.swift in Sources */,
-				OBJ_74 /* RegionDateTests.swift in Sources */,
 				OBJ_75 /* RegionTests.swift in Sources */,
 				OBJ_76 /* WeekdayTests.swift in Sources */,
 				OBJ_77 /* XCTestManifests.swift in Sources */,
